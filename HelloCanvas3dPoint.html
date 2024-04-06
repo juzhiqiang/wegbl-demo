@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="1024" height="768"></canvas>
+    <script src="./webgl-unit.js"></script>
+    <script>
+      // 顶点着色器
+      const VSHEADER_SOURCE = `
+        void main() {
+          gl_Position = vec4(0.0, 0.0, 0.0, 1.0);
+          gl_PointSize = 10.0;
+        }
+      `;
+
+      // 片元着色器
+      const FSHADER_SOURCE = `
+        void main() {
+          gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        }
+      `;
+
+      window.onload = function () {
+        const canvas = document.getElementById("myCanvas");
+        const gl = getWebGLContext(canvas);
+
+        if (!initShaders(gl, VSHEADER_SOURCE, FSHADER_SOURCE)) {
+          return console.log("着色器初始化失败");
+        }
+
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+
+        // 清空颜色缓冲区
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        gl.drawArrays(gl.POINTS, 0, 1);
+      };
+    </script>
+  </body>
+</html>

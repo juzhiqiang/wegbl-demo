@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="500px" height="500px"></canvas>
+    <script>
+      window.onload = function () {
+        const canvas = document.getElementById("myCanvas");
+
+        if (!canvas) {
+          return console.warn("请获取canvas元素");
+        }
+
+        const ctx = canvas.getContext("2d");
+
+        // 绘制
+        ctx.fillStyle = "blue";
+        // x ,y ,width, height
+        ctx.fillRect(120, 20, 150, 150);
+      };
+    </script>
+  </body>
+</html>
